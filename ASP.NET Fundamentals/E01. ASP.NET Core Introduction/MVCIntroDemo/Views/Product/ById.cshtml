@@ -1,0 +1,14 @@
+﻿@using MVCIntroDemo.ViewModels.Product;
+@model ProductViewModel
+
+@{
+    ViewData["Title"] = "All Products";
+}
+
+<div class="card">
+    <div class="card-header">@ViewData["Title"]</div>
+    <div class="card-body">
+        <h5 class="card-title">Product name: @Model.Name</h5>
+        <p class="card-text">Price: @Model.Price$</p>
+    </div>
+</div>
