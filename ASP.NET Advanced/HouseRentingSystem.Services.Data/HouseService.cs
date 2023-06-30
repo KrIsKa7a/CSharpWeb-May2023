@@ -3,8 +3,10 @@
     using Microsoft.EntityFrameworkCore;
 
     using HouseRentingSystem.Data;
+    using HouseRentingSystem.Data.Models;
     using Interfaces;
     using Web.ViewModels.Home;
+    using Web.ViewModels.House;
 
     public class HouseService : IHouseService
     {
@@ -30,6 +32,23 @@
                 .ToArrayAsync();
 
             return lastThreeHouses;
+        }
+
+        public async Task CreateAsync(HouseFormModel formModel, string agentId)
+        {
+            House newHouse = new House
+            {
+                Title = formModel.Title,
+                Address = formModel.Address,
+                Description = formModel.Description,
+                ImageUrl = formModel.ImageUrl,
+                PricePerMonth = formModel.PricePerMonth,
+                CategoryId = formModel.CategoryId,
+                AgentId = Guid.Parse(agentId),
+            };
+
+            await this.dbContext.Houses.AddAsync(newHouse);
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }
