@@ -1,0 +1,14 @@
+﻿@model HouseFormModel
+@{
+    ViewData["Title"] = "Add House";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr />
+
+<partial name="_HouseFormPartial" model="@Model"/>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+}
