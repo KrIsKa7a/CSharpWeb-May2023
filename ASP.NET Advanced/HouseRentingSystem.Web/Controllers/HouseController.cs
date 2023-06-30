@@ -100,7 +100,8 @@
 
                 string houseId = 
                     await this.houseService.CreateAndReturnIdAsync(model, agentId!);
-                
+
+                this.TempData[SuccessMessage] = "House was added successfully!";
                 return this.RedirectToAction("Details", "House", new { id = houseId });
             }
             catch (Exception)
@@ -236,6 +237,7 @@
                 return this.View(model);
             }
 
+            this.TempData[SuccessMessage] = "House was edited successfully!";
             return this.RedirectToAction("Details", "House", new { id });
         }
 
