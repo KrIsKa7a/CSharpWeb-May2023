@@ -226,7 +226,7 @@
 
             try
             {
-                await this.houseService.EditHouseByIdAndFormModel(id, model);
+                await this.houseService.EditHouseByIdAndFormModelAsync(id, model);
             }
             catch (Exception)
             {
@@ -239,6 +239,96 @@
 
             this.TempData[SuccessMessage] = "House was edited successfully!";
             return this.RedirectToAction("Details", "House", new { id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            bool houseExists = await this.houseService
+                .ExistsByIdAsync(id);
+            if (!houseExists)
+            {
+                this.TempData[ErrorMessage] = "House with the provided id does not exist!";
+
+                return this.RedirectToAction("All", "House");
+            }
+
+            bool isUserAgent = await this.agentService
+                .AgentExistsByUserIdAsync(this.User.GetId()!);
+            if (!isUserAgent)
+            {
+                this.TempData[ErrorMessage] = "You must become an agent in order to edit house info!";
+
+                return this.RedirectToAction("Become", "Agent");
+            }
+
+            string? agentId =
+                await this.agentService.GetAgentIdByUserIdAsync(this.User.GetId()!);
+            bool isAgentOwner = await this.houseService
+                .IsAgentWithIdOwnerOfHouseWithIdAsync(id, agentId!);
+            if (!isAgentOwner)
+            {
+                this.TempData[ErrorMessage] = "You must be the agent owner of the house you want to edit!";
+
+                return this.RedirectToAction("Mine", "House");
+            }
+
+            try
+            {
+                HousePreDeleteDetailsViewModel viewModel =
+                    await this.houseService.GetHouseForDeleteByIdAsync(id);
+
+                return this.View(viewModel);
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id, HousePreDeleteDetailsViewModel model)
+        {
+            bool houseExists = await this.houseService
+                .ExistsByIdAsync(id);
+            if (!houseExists)
+            {
+                this.TempData[ErrorMessage] = "House with the provided id does not exist!";
+
+                return this.RedirectToAction("All", "House");
+            }
+
+            bool isUserAgent = await this.agentService
+                .AgentExistsByUserIdAsync(this.User.GetId()!);
+            if (!isUserAgent)
+            {
+                this.TempData[ErrorMessage] = "You must become an agent in order to edit house info!";
+
+                return this.RedirectToAction("Become", "Agent");
+            }
+
+            string? agentId =
+                await this.agentService.GetAgentIdByUserIdAsync(this.User.GetId()!);
+            bool isAgentOwner = await this.houseService
+                .IsAgentWithIdOwnerOfHouseWithIdAsync(id, agentId!);
+            if (!isAgentOwner)
+            {
+                this.TempData[ErrorMessage] = "You must be the agent owner of the house you want to edit!";
+
+                return this.RedirectToAction("Mine", "House");
+            }
+
+            try
+            {
+                await this.houseService.DeleteHouseByIdAsync(id);
+
+                this.TempData[WarningMessage] = "The house was successfully deleted!";
+                return this.RedirectToAction("Mine", "House");
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }
         }
 
         [HttpGet]
