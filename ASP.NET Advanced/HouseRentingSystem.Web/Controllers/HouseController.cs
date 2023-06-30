@@ -11,5 +11,11 @@
         {
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+
+        }
     }
 }
