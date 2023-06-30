@@ -113,5 +113,46 @@
                 Houses = allHouses
             };
         }
+
+        public async Task<IEnumerable<HouseAllViewModel>> AllByAgentIdAsync(string agentId)
+        {
+            IEnumerable<HouseAllViewModel> allAgentHouses = await this.dbContext
+                .Houses
+                .Where(h => h.IsActive && 
+                            h.AgentId.ToString() == agentId)
+                .Select(h => new HouseAllViewModel
+                {
+                    Id = h.Id.ToString(),
+                    Title = h.Title,
+                    Address = h.Address,
+                    ImageUrl = h.ImageUrl,
+                    PricePerMonth = h.PricePerMonth,
+                    IsRented = h.RenterId.HasValue
+                })
+                .ToArrayAsync();
+
+            return allAgentHouses;
+        }
+
+        public async Task<IEnumerable<HouseAllViewModel>> AllByUserIdAsync(string userId)
+        {
+            IEnumerable<HouseAllViewModel> allUserHouses = await this.dbContext
+                .Houses
+                .Where(h => h.IsActive && 
+                            h.RenterId.HasValue &&
+                            h.RenterId.ToString() == userId)
+                .Select(h => new HouseAllViewModel
+                {
+                    Id = h.Id.ToString(),
+                    Title = h.Title,
+                    Address = h.Address,
+                    ImageUrl = h.ImageUrl,
+                    PricePerMonth = h.PricePerMonth,
+                    IsRented = h.RenterId.HasValue
+                })
+                .ToArrayAsync();
+
+            return allUserHouses;
+        }
     }
 }
