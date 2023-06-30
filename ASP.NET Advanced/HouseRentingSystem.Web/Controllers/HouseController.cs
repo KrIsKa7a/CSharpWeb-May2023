@@ -98,7 +98,10 @@
                 string? agentId = 
                     await this.agentService.GetAgentIdByUserIdAsync(this.User.GetId()!);
 
-                await this.houseService.CreateAsync(model, agentId!);
+                string houseId = 
+                    await this.houseService.CreateAndReturnIdAsync(model, agentId!);
+                
+                return this.RedirectToAction("Details", "House", new { id = houseId });
             }
             catch (Exception)
             {
@@ -107,8 +110,6 @@
 
                 return this.View(model);
             }
-
-            return this.RedirectToAction("All", "House");
         }
 
         [HttpGet]

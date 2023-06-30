@@ -38,7 +38,7 @@
             return lastThreeHouses;
         }
 
-        public async Task CreateAsync(HouseFormModel formModel, string agentId)
+        public async Task<string> CreateAndReturnIdAsync(HouseFormModel formModel, string agentId)
         {
             House newHouse = new House
             {
@@ -53,6 +53,8 @@
 
             await this.dbContext.Houses.AddAsync(newHouse);
             await this.dbContext.SaveChangesAsync();
+
+            return newHouse.Id.ToString();
         }
 
         public async Task<AllHousesFilteredAndPagedServiceModel> AllAsync(AllHousesQueryModel queryModel)
