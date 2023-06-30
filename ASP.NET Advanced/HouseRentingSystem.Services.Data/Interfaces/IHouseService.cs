@@ -1,5 +1,7 @@
 ﻿namespace HouseRentingSystem.Services.Data.Interfaces
 {
+    using Models.House;
+
     using Web.ViewModels.Home;
     using Web.ViewModels.House;
 
@@ -8,5 +10,7 @@
         Task<IEnumerable<IndexViewModel>> LastThreeHousesAsync();
 
         Task CreateAsync(HouseFormModel formModel, string agentId);
+
+        Task<AllHousesFilteredAndPagedServiceModel> AllAsync(AllHousesQueryModel queryModel);
     }
 }

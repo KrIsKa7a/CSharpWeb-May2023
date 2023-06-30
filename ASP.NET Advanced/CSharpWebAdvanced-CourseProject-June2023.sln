@@ -3,25 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentingSystem.Web", "HouseRentingSystem.Web\HouseRentingSystem.Web.csproj", "{0F3CB05A-BA11-4436-8D0E-5287F3514783}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseRentingSystem.Web", "HouseRentingSystem.Web\HouseRentingSystem.Web.csproj", "{0F3CB05A-BA11-4436-8D0E-5287F3514783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentingSystem.Common", "HouseRentingSystem.Common\HouseRentingSystem.Common.csproj", "{1D380437-1B27-4F50-BAB4-C5C830040213}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseRentingSystem.Common", "HouseRentingSystem.Common\HouseRentingSystem.Common.csproj", "{1D380437-1B27-4F50-BAB4-C5C830040213}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{8DDC940E-AC14-4285-AD54-99540D6F7FAF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F34AFA57-AB67-4036-AA73-D8CE43ECF203}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentingSystem.Data", "HouseRentingSystem.Data\HouseRentingSystem.Data.csproj", "{B95D1BDF-F64A-42D9-88B3-8D34D259D63B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseRentingSystem.Data", "HouseRentingSystem.Data\HouseRentingSystem.Data.csproj", "{B95D1BDF-F64A-42D9-88B3-8D34D259D63B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentingSystem.Data.Models", "HouseRentingSystem.Data.Models\HouseRentingSystem.Data.Models.csproj", "{FFEB2954-D477-4349-A90D-D0D14C158F68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseRentingSystem.Data.Models", "HouseRentingSystem.Data.Models\HouseRentingSystem.Data.Models.csproj", "{FFEB2954-D477-4349-A90D-D0D14C158F68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentingSystem.Web.ViewModels", "HouseRentingSystem.Web.ViewModels\HouseRentingSystem.Web.ViewModels.csproj", "{89434E87-AA17-476E-AF72-4C6D7A4BDCCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseRentingSystem.Web.ViewModels", "HouseRentingSystem.Web.ViewModels\HouseRentingSystem.Web.ViewModels.csproj", "{89434E87-AA17-476E-AF72-4C6D7A4BDCCF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{EEECD8FD-C37E-406B-9F65-AF490D18172E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentingSystem.Services.Data", "HouseRentingSystem.Services.Data\HouseRentingSystem.Services.Data.csproj", "{540F0AB0-6CEC-4612-8EDE-C827B4D553F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseRentingSystem.Services.Data", "HouseRentingSystem.Services.Data\HouseRentingSystem.Services.Data.csproj", "{540F0AB0-6CEC-4612-8EDE-C827B4D553F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentingSystem.Web.Infrastructure", "HouseRentingSystem.Web.Infrastructure\HouseRentingSystem.Web.Infrastructure.csproj", "{2469A2E7-88C7-4F5E-8A91-34C75D2AF0B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseRentingSystem.Web.Infrastructure", "HouseRentingSystem.Web.Infrastructure\HouseRentingSystem.Web.Infrastructure.csproj", "{2469A2E7-88C7-4F5E-8A91-34C75D2AF0B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentingSystem.Services.Data.Models", "HouseRentingSystem.Services.Data.Models\HouseRentingSystem.Services.Data.Models.csproj", "{B1475A6F-FFC4-4465-93E4-9F4C98C8DFC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{2469A2E7-88C7-4F5E-8A91-34C75D2AF0B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2469A2E7-88C7-4F5E-8A91-34C75D2AF0B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2469A2E7-88C7-4F5E-8A91-34C75D2AF0B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1475A6F-FFC4-4465-93E4-9F4C98C8DFC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1475A6F-FFC4-4465-93E4-9F4C98C8DFC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1475A6F-FFC4-4465-93E4-9F4C98C8DFC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1475A6F-FFC4-4465-93E4-9F4C98C8DFC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{89434E87-AA17-476E-AF72-4C6D7A4BDCCF} = {8DDC940E-AC14-4285-AD54-99540D6F7FAF}
 		{540F0AB0-6CEC-4612-8EDE-C827B4D553F5} = {EEECD8FD-C37E-406B-9F65-AF490D18172E}
 		{2469A2E7-88C7-4F5E-8A91-34C75D2AF0B1} = {8DDC940E-AC14-4285-AD54-99540D6F7FAF}
+		{B1475A6F-FFC4-4465-93E4-9F4C98C8DFC5} = {EEECD8FD-C37E-406B-9F65-AF490D18172E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8BB3791-7FE4-42BE-9DF4-85E4CBC9C2FA}

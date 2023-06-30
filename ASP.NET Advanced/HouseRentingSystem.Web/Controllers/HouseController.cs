@@ -5,6 +5,7 @@
 
     using Infrastructure.Extensions;
     using Services.Data.Interfaces;
+    using Services.Data.Models.House;
     using ViewModels.House;
 
     using static Common.NotificationMessagesConstants;
@@ -24,11 +25,18 @@
             this.houseService = houseService;
         }
 
+        [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All([FromQuery]AllHousesQueryModel queryModel)
         {
-            // TODO: Implement it
-            return this.Ok();
+            AllHousesFilteredAndPagedServiceModel serviceModel =
+                await this.houseService.AllAsync(queryModel);
+
+            queryModel.Houses = serviceModel.Houses;
+            queryModel.TotalHouses = serviceModel.TotalHousesCount;
+            queryModel.Categories = await this.categoryService.AllCategoryNamesAsync();
+
+            return this.View(queryModel);
         }
 
         [HttpGet]
