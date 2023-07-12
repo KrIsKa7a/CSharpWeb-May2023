@@ -363,6 +363,89 @@
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Rent(string id)
+        {
+            bool houseExists = await this.houseService.ExistsByIdAsync(id);
+            if (!houseExists)
+            {
+                this.TempData[ErrorMessage] = "House with provided id does not exist! Please try again!";
+
+                return this.RedirectToAction("All", "House");
+            }
+
+            bool isHouseRented = await this.houseService.IsRentedByIdAsync(id);
+            if (isHouseRented)
+            {
+                this.TempData[ErrorMessage] =
+                    "Selected house is already rented by another user! Please select another house.";
+
+                return this.RedirectToAction("All", "House");
+            }
+
+            bool isUserAgent =
+                await this.agentService.AgentExistsByUserIdAsync(this.User.GetId()!);
+            if (isUserAgent)
+            {
+                this.TempData[ErrorMessage] = "Agents can't rent houses. Please register as a user!";
+
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            try
+            {
+                await this.houseService.RentHouseAsync(id, this.User.GetId()!);
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }
+
+            return this.RedirectToAction("Mine", "House");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Leave(string id)
+        {
+            bool houseExists = await this.houseService.ExistsByIdAsync(id);
+            if (!houseExists)
+            {
+                this.TempData[ErrorMessage] = "House with provided id does not exist! Please try again!";
+
+                return this.RedirectToAction("All", "House");
+            }
+
+            bool isHouseRented = await this.houseService.IsRentedByIdAsync(id);
+            if (!isHouseRented)
+            {
+                this.TempData[ErrorMessage] =
+                    "Selected house is not rented! Please select one of your houses if you wish to leave them.";
+
+                return this.RedirectToAction("Mine", "House");
+            }
+
+            bool isCurrentUserRenterOfTheHouse =
+                await this.houseService.IsRenterByUserWithIdAsync(id, this.User.GetId()!);
+            if (!isCurrentUserRenterOfTheHouse)
+            {
+                this.TempData[ErrorMessage] =
+                    "You must be the renter of the house in order to leave it! Please try again with one of your rented houses if you wish to leave them.";
+
+                return this.RedirectToAction("Mine", "House");
+            }
+
+            try
+            {
+                await this.houseService.LeaveHouseAsync(id);
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }
+
+            return this.RedirectToAction("Mine", "House");
+        }
+
         private IActionResult GeneralError()
         {
             this.TempData[ErrorMessage] =
