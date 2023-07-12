@@ -3,6 +3,7 @@
     using Microsoft.EntityFrameworkCore;
 
     using HouseRentingSystem.Data;
+    using HouseRentingSystem.Data.Models;
     using Interfaces;
     using Web.ViewModels.Category;
 
@@ -62,6 +63,20 @@
                 .ToArrayAsync();
 
             return allNames;
+        }
+
+        public async Task<CategoryDetailsViewModel> GetDetailsByIdAsync(int id)
+        {
+            Category category = await this.dbContext
+                .Categories
+                .FirstAsync(c => c.Id == id);
+
+            CategoryDetailsViewModel viewModel = new CategoryDetailsViewModel()
+            {
+                Id = category.Id,
+                Name = category.Name
+            };
+            return viewModel;
         }
     }
 }

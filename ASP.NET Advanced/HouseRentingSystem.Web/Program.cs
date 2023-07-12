@@ -68,11 +68,11 @@ namespace HouseRentingSystem.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(config =>
             {
                 config.MapControllerRoute(
-                    name: "ProtectingUrlPattern",
+                    name: "ProtectingUrlRoute",
                     pattern: "/{controller}/{action}/{id}/{information}",
                     defaults: new { Controller = "Category", Action = "Details" });
                 config.MapDefaultControllerRoute();
