@@ -71,9 +71,10 @@ namespace HouseRentingSystem.Web
 
             app.UseEndpoints(config =>
             {
-                //config.MapControllerRoute(
-                //    name: "ProtectingUrlPattern",
-                //    pattern: "/{controller}/{action}/{id}/{information}");
+                config.MapControllerRoute(
+                    name: "ProtectingUrlPattern",
+                    pattern: "/{controller}/{action}/{id}/{information}",
+                    defaults: new { Controller = "Category", Action = "Details" });
                 config.MapDefaultControllerRoute();
                 config.MapRazorPages();
             });

@@ -1,0 +1,15 @@
+﻿@model IEnumerable<AllCategoriesViewModel>
+
+@{
+    ViewData["Title"] = "All Categories";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr />
+
+<div class="list-group">
+    @foreach (AllCategoriesViewModel category in Model)
+    {
+        <a class="list-group-item list-group-item-action" asp-controller="Category" asp-action="Details" asp-route-id="@category.Id">@category.Name</a>
+    }
+</div>
