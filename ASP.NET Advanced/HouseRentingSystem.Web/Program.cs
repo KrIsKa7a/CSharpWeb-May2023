@@ -6,6 +6,7 @@ namespace HouseRentingSystem.Web
     using Data.Models;
     using Infrastructure.Extensions;
     using Infrastructure.ModelBinders;
+    using Microsoft.AspNetCore.Mvc;
     using Services.Data.Interfaces;
 
     public class Program
@@ -42,6 +43,7 @@ namespace HouseRentingSystem.Web
                 .AddMvcOptions(options =>
                 {
                     options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
                 });
 
             WebApplication app = builder.Build();
@@ -67,8 +69,14 @@ namespace HouseRentingSystem.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapDefaultControllerRoute();
-            app.MapRazorPages();
+            app.UseEndpoints(config =>
+            {
+                //config.MapControllerRoute(
+                //    name: "ProtectingUrlPattern",
+                //    pattern: "/{controller}/{action}/{id}/{information}");
+                config.MapDefaultControllerRoute();
+                config.MapRazorPages();
+            });
 
             app.Run();
         }

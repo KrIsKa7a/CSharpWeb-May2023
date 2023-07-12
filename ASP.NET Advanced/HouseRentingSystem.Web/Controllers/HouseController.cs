@@ -376,7 +376,7 @@
                 return this.RedirectToAction("All", "House");
             }
 
-            bool isHouseRented = await this.houseService.IsRentedByIdAsync(id);
+            bool isHouseRented = await this.houseService.IsRentedAsync(id);
             if (isHouseRented)
             {
                 this.TempData[ErrorMessage] =
@@ -417,7 +417,7 @@
                 return this.RedirectToAction("All", "House");
             }
 
-            bool isHouseRented = await this.houseService.IsRentedByIdAsync(id);
+            bool isHouseRented = await this.houseService.IsRentedAsync(id);
             if (!isHouseRented)
             {
                 this.TempData[ErrorMessage] =
@@ -427,7 +427,7 @@
             }
 
             bool isCurrentUserRenterOfTheHouse =
-                await this.houseService.IsRenterByUserWithIdAsync(id, this.User.GetId()!);
+                await this.houseService.IsRentedByUserWithIdAsync(id, this.User.GetId()!);
             if (!isCurrentUserRenterOfTheHouse)
             {
                 this.TempData[ErrorMessage] =

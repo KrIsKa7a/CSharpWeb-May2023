@@ -270,7 +270,7 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<bool> IsRentedByIdAsync(string houseId)
+        public async Task<bool> IsRentedAsync(string houseId)
         {
             House house = await this.dbContext
                 .Houses
@@ -289,7 +289,7 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<bool> IsRenterByUserWithIdAsync(string houseId, string userId)
+        public async Task<bool> IsRentedByUserWithIdAsync(string houseId, string userId)
         {
             House house = await this.dbContext
                 .Houses
