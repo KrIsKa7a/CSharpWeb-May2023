@@ -23,7 +23,7 @@
         public async Task<IActionResult> Become()
         {
             string? userId = this.User.GetId();
-            bool isAgent = await this.agentService.AgentExistsByUserIdAsync(userId);
+            bool isAgent = await this.agentService.AgentExistsByUserIdAsync(userId!);
             if (isAgent)
             {
                 this.TempData[ErrorMessage] = "You are already an agent!";
