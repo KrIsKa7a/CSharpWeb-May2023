@@ -149,6 +149,8 @@
                 this.TempData[ErrorMessage] = "House with the provided id does not exist!";
 
                 return this.RedirectToAction("All", "House");
+                
+                //return this.NotFound(); -> If you want to return 404 page
             }
 
             bool isUserAgent = await this.agentService
