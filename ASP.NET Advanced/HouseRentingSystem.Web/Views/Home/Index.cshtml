@@ -34,11 +34,11 @@
             var house = houses[i];
             <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
                 <img class="d-block w-100" style="height:500px"
-                 src="@house.ImageUrl" alt="@house.Title">
+                     src="@house.ImageUrl" alt="@house.Title">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>
                         <a class="btn btn-primary" asp-controller="House" asp-action="Details"
-                       asp-route-id="@house.Id"> @house.Title</a>
+                           asp-route-id="@house.Id"> @house.Title</a>
                     </h5>
                 </div>
             </div>
@@ -53,3 +53,23 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
+
+<div class="mb-5"></div>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <button class="btn btn-primary" id="statistics_btn">Show Statistics</button>
+    </div>
+</div>
+
+<div class="mt-4 p-5 bg-light d-none" id="statistics_box">
+    <div class="row">
+        <h2 class="col-md-6 text-center" id="total_houses"></h2>
+        <h2 class="col-md-6 text-center" id="total_rents"></h2>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>statistics();</script>
+}

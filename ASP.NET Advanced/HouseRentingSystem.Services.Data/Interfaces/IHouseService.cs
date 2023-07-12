@@ -1,6 +1,7 @@
 ﻿namespace HouseRentingSystem.Services.Data.Interfaces
 {
     using Models.House;
+    using Models.Statistics;
     using Web.ViewModels.Home;
     using Web.ViewModels.House;
 
@@ -37,5 +38,7 @@
         Task<bool> IsRenterByUserWithIdAsync(string houseId, string userId);
 
         Task LeaveHouseAsync(string houseId);
+
+        Task<StatisticsServiceModel> GetStatisticsAsync();
     }
 }

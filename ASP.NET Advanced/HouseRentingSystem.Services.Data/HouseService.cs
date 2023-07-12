@@ -6,6 +6,7 @@
     using HouseRentingSystem.Data.Models;
     using Interfaces;
     using Models.House;
+    using Models.Statistics;
     using Web.ViewModels.Agent;
     using Web.ViewModels.Home;
     using Web.ViewModels.House;
@@ -306,6 +307,17 @@
             house.RenterId = null;
 
             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<StatisticsServiceModel> GetStatisticsAsync()
+        {
+            return new StatisticsServiceModel()
+            {
+                TotalHouses = await this.dbContext.Houses.CountAsync(),
+                TotalRents = await this.dbContext.Houses
+                    .Where(h => h.RenterId.HasValue)
+                    .CountAsync()
+            };
         }
     }
 }
