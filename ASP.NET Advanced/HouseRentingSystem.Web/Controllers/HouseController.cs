@@ -16,13 +16,15 @@
         private readonly ICategoryService categoryService;
         private readonly IAgentService agentService;
         private readonly IHouseService houseService;
+        private readonly IUserService userService;
 
         public HouseController(ICategoryService categoryService, IAgentService agentService,
-            IHouseService houseService)
+            IHouseService houseService, IUserService userService)
         {
             this.categoryService = categoryService;
             this.agentService = agentService;
             this.houseService = houseService;
+            this.userService = userService;
         }
 
         [HttpGet]
@@ -130,6 +132,8 @@
             {
                 HouseDetailsViewModel viewModel = await this.houseService
                     .GetDetailsByIdAsync(id);
+                viewModel.Agent.FullName =
+                    await this.userService.GetFullNameByEmailAsync(this.User.Identity?.Name!);
 
                 return View(viewModel);
             }
