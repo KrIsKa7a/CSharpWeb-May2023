@@ -8,6 +8,7 @@
     using ViewModels.User;
 
     using static Common.NotificationMessagesConstants;
+    using Griesoft.AspNetCore.ReCaptcha;
 
     public class UserController : Controller
     {
@@ -28,6 +29,8 @@
         }
 
         [HttpPost]
+        [ValidateRecaptcha(Action = nameof(Register),
+            ValidationFailedAction = ValidationFailedAction.ContinueRequest)]
         public async Task<IActionResult> Register(RegisterFormModel model)
         {
             if (!ModelState.IsValid)

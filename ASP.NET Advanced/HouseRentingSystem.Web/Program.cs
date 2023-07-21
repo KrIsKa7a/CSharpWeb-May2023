@@ -45,6 +45,8 @@ namespace HouseRentingSystem.Web
 
             builder.Services.AddApplicationServices(typeof(IHouseService));
 
+            builder.Services.AddRecaptchaService();
+
             builder.Services.ConfigureApplicationCookie(cfg =>
             {
                 cfg.LoginPath = "/User/Login";
