@@ -1,6 +1,11 @@
-﻿namespace HouseRentingSystem.Data.Models
+﻿// ReSharper disable VirtualMemberCallInConstructor
+namespace HouseRentingSystem.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     using Microsoft.AspNetCore.Identity;
+
+    using static Common.EntityValidationConstants.User;
 
     /// <summary>
     /// This is custom user class that works with the default ASP.NET Core Identity.
@@ -11,8 +16,17 @@
         public ApplicationUser()
         {
             this.Id = Guid.NewGuid();
+
             this.RentedHouses = new HashSet<House>();
         }
+
+        [Required]
+        [MaxLength(FirstNameMaxLength)]
+        public string FirstName { get; set; } = null!;
+
+        [Required]
+        [MaxLength(LastNameMaxLength)]
+        public string LastName { get; set; } = null!;
 
         public virtual ICollection<House> RentedHouses { get; set; }
     }
