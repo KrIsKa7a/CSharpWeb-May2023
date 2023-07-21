@@ -5,6 +5,7 @@
     using HouseRentingSystem.Data;
     using HouseRentingSystem.Data.Models;
     using Interfaces;
+    using Mapping;
     using Models.House;
     using Models.Statistics;
     using Web.ViewModels.Agent;
@@ -28,12 +29,7 @@
                 .Where(h => h.IsActive)
                 .OrderByDescending(h => h.CreatedOn)
                 .Take(3)
-                .Select(h => new IndexViewModel()
-                {
-                    Id = h.Id.ToString(),
-                    Title = h.Title,
-                    ImageUrl = h.ImageUrl
-                })
+                .To<IndexViewModel>()
                 .ToArrayAsync();
 
             return lastThreeHouses;

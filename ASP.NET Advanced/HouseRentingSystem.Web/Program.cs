@@ -1,3 +1,6 @@
+using System.Reflection;
+using HouseRentingSystem.Services.Mapping;
+
 namespace HouseRentingSystem.Web
 {
     using Microsoft.AspNetCore.Identity;
@@ -11,6 +14,7 @@ namespace HouseRentingSystem.Web
     using Services.Data.Interfaces;
 
     using static Common.GeneralApplicationConstants;
+    using HouseRentingSystem.Web.ViewModels.Home;
 
     public class Program
     {
@@ -56,7 +60,9 @@ namespace HouseRentingSystem.Web
                 });
 
             WebApplication app = builder.Build();
-            
+
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
