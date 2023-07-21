@@ -36,7 +36,7 @@
             <div class="form-inline">
                 @if (this.User.Identity?.IsAuthenticated ?? false)
                 {
-                    @if (isUserAgent && isAgentOwnerOfTheHouse)
+                    @if ((isUserAgent && isAgentOwnerOfTheHouse) || this.User.IsAdmin())
                     {
                         <a class="btn btn-warning" asp-controller="House" asp-action="Edit"
                            asp-route-id="@Model.Id">Edit</a>
@@ -46,7 +46,7 @@
 
                     @if (!Model.IsRented)
                     {
-                        @if (!isUserAgent)
+                        @if (!isUserAgent || this.User.IsAdmin())
                         {
                             <form class="ml-2" asp-controller="House"
                                   asp-action="Rent" asp-route-id="@Model.Id" method="post">

@@ -27,7 +27,7 @@
 
             @if (this.User.Identity?.IsAuthenticated ?? false)
             {
-                @if (isUserAgent && isAgentOwnerOfTheHouse)
+                @if ((isUserAgent && isAgentOwnerOfTheHouse) || this.User.IsAdmin())
                 {
                     <a asp-controller="House" asp-action="Edit" asp-route-id="@Model.Id"
                        class="btn btn-warning">Edit</a>
@@ -38,7 +38,7 @@
 
                 @if (!Model.IsRented)
                 {
-                    @if (!isUserAgent)
+                    @if (!isUserAgent || this.User.IsAdmin())
                     {
                         <form class="input-group-sm" asp-controller="House"
                               asp-action="Rent" asp-route-id="@Model.Id" method="post">
