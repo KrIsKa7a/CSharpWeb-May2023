@@ -1,7 +1,5 @@
 ﻿namespace HouseRentingSystem.Web.Controllers
 {
-    using System.Diagnostics;
-
     using Microsoft.AspNetCore.Mvc;
 
     using Services.Data.Interfaces;

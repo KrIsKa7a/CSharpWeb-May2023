@@ -1,16 +1,16 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using HouseRentingSystem.Data;
 namespace HouseRentingSystem.Web
 {
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     
     using Data;
     using Data.Models;
     using Infrastructure.Extensions;
     using Infrastructure.ModelBinders;
-    using Microsoft.AspNetCore.Mvc;
     using Services.Data.Interfaces;
+
+    using static Common.GeneralApplicationConstants;
 
     public class Program
     {
@@ -37,6 +37,7 @@ namespace HouseRentingSystem.Web
                     options.Password.RequiredLength =
                         builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
                 })
+                .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<HouseRentingDbContext>();
 
             builder.Services.AddApplicationServices(typeof(IHouseService));
@@ -76,6 +77,8 @@ namespace HouseRentingSystem.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.SeedAdministrator(DevelopmentAdminEmail);
             
             app.UseEndpoints(config =>
             {
