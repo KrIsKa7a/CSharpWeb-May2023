@@ -21,7 +21,7 @@
         public async Task<IActionResult> All()
         {
             IEnumerable<AllCategoriesViewModel> viewModel =
-                await this.categoryService.AllCategoriesForListAsync();
+                await categoryService.AllCategoriesForListAsync();
 
             return View(viewModel);
         }
@@ -29,20 +29,20 @@
         [HttpGet]
         public async Task<IActionResult> Details(int id, string information)
         {
-            bool categoryExists = await this.categoryService.ExistsByIdAsync(id);
+            bool categoryExists = await categoryService.ExistsByIdAsync(id);
             if (!categoryExists)
             {
-                return this.NotFound();
+                return NotFound();
             }
 
             CategoryDetailsViewModel viewModel =
-                await this.categoryService.GetDetailsByIdAsync(id);
+                await categoryService.GetDetailsByIdAsync(id);
             if (viewModel.GetUrlInformation() != information)
             {
-                return this.NotFound();
+                return NotFound();
             }
 
-            return this.View(viewModel);
+            return View(viewModel);
         }
     }
 }

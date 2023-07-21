@@ -8,7 +8,7 @@
     {
         public Category()
         {
-            this.Houses = new HashSet<House>();
+            Houses = new HashSet<House>();
         }
 
         [Key]

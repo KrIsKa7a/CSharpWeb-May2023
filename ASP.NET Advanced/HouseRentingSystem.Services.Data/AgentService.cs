@@ -18,7 +18,7 @@
 
         public async Task<bool> AgentExistsByUserIdAsync(string userId)
         {
-            bool result = await this.dbContext
+            bool result = await dbContext
                 .Agents
                 .AnyAsync(a => a.UserId.ToString() == userId);
 
@@ -27,7 +27,7 @@
 
         public async Task<bool> AgentExistsByPhoneNumberAsync(string phoneNumber)
         {
-            bool result = await this.dbContext
+            bool result = await dbContext
                 .Agents
                 .AnyAsync(a => a.PhoneNumber == phoneNumber);
 
@@ -36,7 +36,7 @@
 
         public async Task<bool> HasRentsByUserIdAsync(string userId)
         {
-            ApplicationUser? user = await this.dbContext
+            ApplicationUser? user = await dbContext
                 .Users
                 .FirstOrDefaultAsync(u => u.Id.ToString() == userId);
             if (user == null)
@@ -55,13 +55,13 @@
                 UserId = Guid.Parse(userId)
             };
 
-            await this.dbContext.Agents.AddAsync(newAgent);
-            await this.dbContext.SaveChangesAsync();
+            await dbContext.Agents.AddAsync(newAgent);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<string?> GetAgentIdByUserIdAsync(string userId)
         {
-            Agent? agent = await this.dbContext
+            Agent? agent = await dbContext
                 .Agents
                 .FirstOrDefaultAsync(a => a.UserId.ToString() == userId);
             if (agent == null)
@@ -74,7 +74,7 @@
 
         public async Task<bool> HasHouseWithIdAsync(string? userId, string houseId)
         {
-            Agent? agent = await this.dbContext
+            Agent? agent = await dbContext
                 .Agents
                 .Include(a => a.OwnedHouses)
                 .FirstOrDefaultAsync(a => a.UserId.ToString() == userId);

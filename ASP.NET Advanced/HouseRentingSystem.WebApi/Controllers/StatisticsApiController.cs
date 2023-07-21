@@ -25,13 +25,13 @@
             try
             {
                 StatisticsServiceModel serviceModel = 
-                    await this.houseService.GetStatisticsAsync();
+                    await houseService.GetStatisticsAsync();
 
-                return this.Ok(serviceModel);
+                return Ok(serviceModel);
             }
             catch (Exception)
             {
-                return this.BadRequest();
+                return BadRequest();
             }
         }
     }

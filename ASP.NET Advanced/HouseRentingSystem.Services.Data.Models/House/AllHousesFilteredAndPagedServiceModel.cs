@@ -6,7 +6,7 @@
     {
         public AllHousesFilteredAndPagedServiceModel()
         {
-            this.Houses = new HashSet<HouseAllViewModel>();
+            Houses = new HashSet<HouseAllViewModel>();
         }
 
         public int TotalHousesCount { get; set; }

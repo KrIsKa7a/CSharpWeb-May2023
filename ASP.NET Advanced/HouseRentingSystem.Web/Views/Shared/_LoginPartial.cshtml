@@ -9,7 +9,7 @@
 
 @inject IAgentService AgentService
 @{
-    bool isUserAgent = await AgentService.AgentExistsByUserIdAsync(this.User.GetId()!);
+    bool isUserAgent = await AgentService.AgentExistsByUserIdAsync(User.GetId()!);
     string userFullName = await UserService.GetFullNameByEmailAsync(User.Identity?.Name!);
 }
 

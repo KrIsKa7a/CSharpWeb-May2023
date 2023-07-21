@@ -9,7 +9,7 @@
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.HasData(this.GenerateCategories());
+            builder.HasData(GenerateCategories());
         }
 
         private Category[] GenerateCategories()

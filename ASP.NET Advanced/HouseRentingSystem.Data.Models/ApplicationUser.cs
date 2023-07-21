@@ -15,9 +15,9 @@ namespace HouseRentingSystem.Data.Models
     {
         public ApplicationUser()
         {
-            this.Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
 
-            this.RentedHouses = new HashSet<House>();
+            RentedHouses = new HashSet<House>();
         }
 
         [Required]

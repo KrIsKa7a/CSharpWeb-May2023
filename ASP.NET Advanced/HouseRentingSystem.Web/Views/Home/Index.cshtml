@@ -7,7 +7,7 @@
     ViewData["Title"] = "Home Page";
 
     var houses = Model.ToList();
-    bool isUserAgent = await AgentService.AgentExistsByUserIdAsync(this.User.GetId()!);
+    bool isUserAgent = await AgentService.AgentExistsByUserIdAsync(User.GetId()!);
 }
 
 @if (!houses.Any())

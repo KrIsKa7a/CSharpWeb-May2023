@@ -24,7 +24,7 @@
         [HttpGet]
         public IActionResult Register()
         {
-            return this.View();
+            return View();
         }
 
         [HttpPost]
@@ -32,7 +32,7 @@
         {
             if (!ModelState.IsValid)
             {
-                return this.View(model);
+                return View(model);
             }
 
             ApplicationUser user = new ApplicationUser()
@@ -41,11 +41,11 @@
                 LastName = model.LastName
             };
 
-            await this.userManager.SetEmailAsync(user, model.Email);
-            await this.userManager.SetUserNameAsync(user, model.Email);
+            await userManager.SetEmailAsync(user, model.Email);
+            await userManager.SetUserNameAsync(user, model.Email);
 
             IdentityResult result = 
-                await this.userManager.CreateAsync(user, model.Password);
+                await userManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
@@ -54,12 +54,12 @@
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
 
-                return this.View(model);
+                return View(model);
             }
 
-            await this.signInManager.SignInAsync(user, false);
+            await signInManager.SignInAsync(user, false);
 
-            return this.RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -72,7 +72,7 @@
                 ReturnUrl = returnUrl
             };
 
-            return this.View(model);
+            return View(model);
         }
 
         [HttpPost]
@@ -80,21 +80,21 @@
         {
             if (!ModelState.IsValid)
             {
-                return this.View(model);
+                return View(model);
             }
 
             var result = 
-                await this.signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
             if (!result.Succeeded)
             {
-                this.TempData[ErrorMessage] =
+                TempData[ErrorMessage] =
                     "There was an error while logging you in! Please try again later or contact an administrator.";
 
-                return this.View(model);
+                return View(model);
             }
 
-            return this.Redirect(model.ReturnUrl ?? "/Home/Index");
+            return Redirect(model.ReturnUrl ?? "/Home/Index");
         }
     }
 }

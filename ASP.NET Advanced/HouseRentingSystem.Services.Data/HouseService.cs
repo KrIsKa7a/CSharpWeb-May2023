@@ -1,5 +1,6 @@
 ﻿namespace HouseRentingSystem.Services.Data
 {
+    using AutoMapper;
     using Microsoft.EntityFrameworkCore;
 
     using HouseRentingSystem.Data;
@@ -37,16 +38,8 @@
 
         public async Task<string> CreateAndReturnIdAsync(HouseFormModel formModel, string agentId)
         {
-            House newHouse = new House
-            {
-                Title = formModel.Title,
-                Address = formModel.Address,
-                Description = formModel.Description,
-                ImageUrl = formModel.ImageUrl,
-                PricePerMonth = formModel.PricePerMonth,
-                CategoryId = formModel.CategoryId,
-                AgentId = Guid.Parse(agentId),
-            };
+            House newHouse = AutoMapperConfig.MapperInstance.Map<House>(formModel);
+            newHouse.AgentId = Guid.Parse(agentId);
 
             await this.dbContext.Houses.AddAsync(newHouse);
             await this.dbContext.SaveChangesAsync();

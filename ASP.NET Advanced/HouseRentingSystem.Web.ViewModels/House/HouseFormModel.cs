@@ -2,15 +2,19 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using AutoMapper;
+
     using Category;
+    using Data.Models;
+    using Services.Mapping;
 
-    using static Common.EntityValidationConstants.House;
+    using static HouseRentingSystem.Common.EntityValidationConstants.House;
 
-    public class HouseFormModel
+    public class HouseFormModel : IMapTo<House>, IHaveCustomMappings
     {
         public HouseFormModel()
         {
-            this.Categories = new HashSet<HouseSelectCategoryFormModel>();
+            Categories = new HashSet<HouseSelectCategoryFormModel>();
         }
 
         [Required]
@@ -38,5 +42,11 @@
         public int CategoryId { get; set; }
 
         public IEnumerable<HouseSelectCategoryFormModel> Categories { get; set; }
+        
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<HouseFormModel, House>()
+                .ForMember(d => d.AgentId, opt => opt.Ignore());
+        }
     }
 }

@@ -10,11 +10,11 @@
     {
         public AllHousesQueryModel()
         {
-            this.CurrentPage = DefaultPage;
-            this.HousesPerPage = EntitiesPerPage;
+            CurrentPage = DefaultPage;
+            HousesPerPage = EntitiesPerPage;
 
-            this.Categories = new HashSet<string>();
-            this.Houses = new HashSet<HouseAllViewModel>();
+            Categories = new HashSet<string>();
+            Houses = new HashSet<HouseAllViewModel>();
         }
 
         public string? Category { get; set; }

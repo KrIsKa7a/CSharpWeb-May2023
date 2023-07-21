@@ -18,7 +18,7 @@
 
         public async Task<IEnumerable<HouseSelectCategoryFormModel>> AllCategoriesAsync()
         {
-            IEnumerable<HouseSelectCategoryFormModel> allCategories = await this.dbContext
+            IEnumerable<HouseSelectCategoryFormModel> allCategories = await dbContext
                 .Categories
                 .AsNoTracking()
                 .Select(c => new HouseSelectCategoryFormModel()
@@ -33,7 +33,7 @@
 
         public async Task<IEnumerable<AllCategoriesViewModel>> AllCategoriesForListAsync()
         {
-            IEnumerable<AllCategoriesViewModel> allCategories = await this.dbContext
+            IEnumerable<AllCategoriesViewModel> allCategories = await dbContext
                 .Categories
                 .AsNoTracking()
                 .Select(c => new AllCategoriesViewModel()
@@ -48,7 +48,7 @@
 
         public async Task<bool> ExistsByIdAsync(int id)
         {
-            bool result = await this.dbContext
+            bool result = await dbContext
                 .Categories
                 .AnyAsync(c => c.Id == id);
 
@@ -57,7 +57,7 @@
 
         public async Task<IEnumerable<string>> AllCategoryNamesAsync()
         {
-            IEnumerable<string> allNames = await this.dbContext
+            IEnumerable<string> allNames = await dbContext
                 .Categories
                 .Select(c => c.Name)
                 .ToArrayAsync();
@@ -67,7 +67,7 @@
 
         public async Task<CategoryDetailsViewModel> GetDetailsByIdAsync(int id)
         {
-            Category category = await this.dbContext
+            Category category = await dbContext
                 .Categories
                 .FirstAsync(c => c.Id == id);
 

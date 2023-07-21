@@ -17,7 +17,7 @@
 
         public async Task<string> GetFullNameByEmailAsync(string email)
         {
-            ApplicationUser? user = await this.dbContext
+            ApplicationUser? user = await dbContext
                 .Users
                 .FirstOrDefaultAsync(u => u.Email == email);
             if (user == null)

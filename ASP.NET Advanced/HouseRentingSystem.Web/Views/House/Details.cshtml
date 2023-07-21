@@ -5,9 +5,9 @@
 @inject IAgentService AgentService
 @inject IHouseService HouseService
 @{
-    bool isUserAgent = await AgentService.AgentExistsByUserIdAsync(this.User.GetId()!);
-    bool isAgentOwnerOfTheHouse = await AgentService.HasHouseWithIdAsync(this.User.GetId(), Model.Id);
-    bool isHouseRentedByUser = await HouseService.IsRentedByUserWithIdAsync(Model.Id, this.User.GetId()!);
+    bool isUserAgent = await AgentService.AgentExistsByUserIdAsync(User.GetId()!);
+    bool isAgentOwnerOfTheHouse = await AgentService.HasHouseWithIdAsync(User.GetId(), Model.Id);
+    bool isHouseRentedByUser = await HouseService.IsRentedByUserWithIdAsync(Model.Id, User.GetId()!);
 }
 
 @{
@@ -34,9 +34,9 @@
             <p>Category: <b>@Model.Category</b></p>
             <p><i>(@(Model.IsRented ? "Rented" : "Not Rented"))</i></p>
             <div class="form-inline">
-                @if (this.User.Identity?.IsAuthenticated ?? false)
+                @if (User.Identity?.IsAuthenticated ?? false)
                 {
-                    @if ((isUserAgent && isAgentOwnerOfTheHouse) || this.User.IsAdmin())
+                    @if ((isUserAgent && isAgentOwnerOfTheHouse) || User.IsAdmin())
                     {
                         <a class="btn btn-warning" asp-controller="House" asp-action="Edit"
                            asp-route-id="@Model.Id">Edit</a>
@@ -46,7 +46,7 @@
 
                     @if (!Model.IsRented)
                     {
-                        @if (!isUserAgent || this.User.IsAdmin())
+                        @if (!isUserAgent || User.IsAdmin())
                         {
                             <form class="ml-2" asp-controller="House"
                                   asp-action="Rent" asp-route-id="@Model.Id" method="post">

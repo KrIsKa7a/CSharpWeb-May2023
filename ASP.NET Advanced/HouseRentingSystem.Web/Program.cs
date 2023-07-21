@@ -1,8 +1,7 @@
-using System.Reflection;
-using HouseRentingSystem.Services.Mapping;
-
 namespace HouseRentingSystem.Web
 {
+    using System.Reflection;
+
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
@@ -12,9 +11,9 @@ namespace HouseRentingSystem.Web
     using Infrastructure.Extensions;
     using Infrastructure.ModelBinders;
     using Services.Data.Interfaces;
-
+    using Services.Mapping;
+    using ViewModels.Home;
     using static Common.GeneralApplicationConstants;
-    using HouseRentingSystem.Web.ViewModels.Home;
 
     public class Program
     {

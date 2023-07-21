@@ -29,7 +29,7 @@
                 .HasForeignKey(h => h.AgentId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasData(this.GenerateHouses());
+            builder.HasData(GenerateHouses());
         }
 
         private House[] GenerateHouses()

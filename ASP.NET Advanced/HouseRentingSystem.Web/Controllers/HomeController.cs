@@ -17,7 +17,7 @@
         public async Task<IActionResult> Index()
         {
             IEnumerable<IndexViewModel> viewModel =
-                await this.houseService.LastThreeHousesAsync();
+                await houseService.LastThreeHousesAsync();
 
             return View(viewModel);
         }
@@ -27,15 +27,15 @@
         {
             if (statusCode == 400 || statusCode == 404)
             {
-                return this.View("Error404");
+                return View("Error404");
             }
             
             if (statusCode == 401)
             {
-                return this.View("Error401");
+                return View("Error401");
             }
 
-            return this.View();
+            return View();
         }
     }
 }
