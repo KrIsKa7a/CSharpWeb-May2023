@@ -1,5 +1,6 @@
 ﻿namespace HouseRentingSystem.Web.Controllers
 {
+    using Griesoft.AspNetCore.ReCaptcha;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,6 @@
     using ViewModels.User;
 
     using static Common.NotificationMessagesConstants;
-    using Griesoft.AspNetCore.ReCaptcha;
 
     public class UserController : Controller
     {

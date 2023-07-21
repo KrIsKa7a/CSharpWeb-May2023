@@ -1,6 +1,5 @@
 ﻿namespace HouseRentingSystem.Services.Data
 {
-    using AutoMapper;
     using Microsoft.EntityFrameworkCore;
 
     using HouseRentingSystem.Data;
