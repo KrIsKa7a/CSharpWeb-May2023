@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using HouseRentingSystem.Data;
 namespace HouseRentingSystem.Web
 {
     using Microsoft.EntityFrameworkCore;
