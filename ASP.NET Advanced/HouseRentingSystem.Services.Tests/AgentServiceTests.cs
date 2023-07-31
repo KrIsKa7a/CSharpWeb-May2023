@@ -1,9 +1,9 @@
 namespace HouseRentingSystem.Services.Tests
 {
-    using Data;
-    using Data.Interfaces;
     using Microsoft.EntityFrameworkCore;
 
+    using Data;
+    using Data.Interfaces;
     using HouseRentingSystem.Data;
 
     using static DatabaseSeeder;

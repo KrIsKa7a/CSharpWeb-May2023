@@ -1,12 +1,11 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
 namespace HouseRentingSystem.Data
 {
-    using System.Reflection;
-    using Configurations;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
+    using Configurations;
     using Models;
 
     public class HouseRentingDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
@@ -27,10 +26,6 @@ namespace HouseRentingSystem.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //Assembly configAssembly = Assembly.GetAssembly(typeof(HouseRentingDbContext)) ??
-            //                          Assembly.GetExecutingAssembly();
-            //builder.ApplyConfigurationsFromAssembly(configAssembly);
-
             builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
             builder.ApplyConfiguration(new HouseEntityConfiguration());
 
