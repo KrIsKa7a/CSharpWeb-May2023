@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using Infrastructure.Extensions;
+    using Microsoft.Extensions.Caching.Memory;
     using Services.Data.Interfaces;
     using Services.Data.Models.House;
     using ViewModels.House;
@@ -19,13 +20,17 @@
         private readonly IHouseService houseService;
         private readonly IUserService userService;
 
+        private readonly IMemoryCache memoryCache;
+
         public HouseController(ICategoryService categoryService, IAgentService agentService,
-            IHouseService houseService, IUserService userService)
+            IHouseService houseService, IUserService userService, IMemoryCache memoryCache)
         {
             this.categoryService = categoryService;
             this.agentService = agentService;
             this.houseService = houseService;
             this.userService = userService;
+
+            this.memoryCache = memoryCache;
         }
 
         [HttpGet]
@@ -428,6 +433,8 @@
                 return GeneralError();
             }
 
+            this.memoryCache.Remove(RentsCacheKey);
+
             return RedirectToAction("Mine", "House");
         }
 
@@ -469,6 +476,8 @@
             {
                 return GeneralError();
             }
+
+            this.memoryCache.Remove(RentsCacheKey);
 
             return RedirectToAction("Mine", "House");
         }
