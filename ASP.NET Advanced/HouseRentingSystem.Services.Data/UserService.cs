@@ -69,14 +69,6 @@
             }
 
             return allUsers;
-            //IEnumerable<UserViewModel> agents = await this.dbContext
-            //    .Agents
-            //    .Include(a => a.User)
-            //    .To<UserViewModel>()
-            //    .ToArrayAsync();
-            //allUsers.AddRange(agents);
-
-
         }
     }
 }
