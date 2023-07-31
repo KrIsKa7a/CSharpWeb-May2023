@@ -8,6 +8,7 @@
     using Services.Data.Models.House;
     using ViewModels.House;
 
+    using static Common.GeneralApplicationConstants;
     using static Common.NotificationMessagesConstants;
 
     [Authorize]
@@ -340,6 +341,11 @@
         [HttpGet]
         public async Task<IActionResult> Mine()
         {
+            if (this.User.IsInRole(AdminRoleName))
+            {
+                return this.RedirectToAction("Mine", "House", new { Area = AdminAreaName });
+            }
+
             List<HouseAllViewModel> myHouses =
                 new List<HouseAllViewModel>();
 
