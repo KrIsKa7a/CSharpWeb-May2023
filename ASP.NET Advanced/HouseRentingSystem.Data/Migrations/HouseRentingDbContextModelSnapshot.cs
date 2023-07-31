@@ -40,7 +40,7 @@ namespace HouseRentingSystem.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Agents");
+                    b.ToTable("Agents", (string)null);
                 });
 
             modelBuilder.Entity("HouseRentingSystem.Data.Models.ApplicationUser", b =>
@@ -138,7 +138,7 @@ namespace HouseRentingSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -214,7 +214,7 @@ namespace HouseRentingSystem.Data.Migrations
 
                     b.HasIndex("RenterId");
 
-                    b.ToTable("Houses");
+                    b.ToTable("Houses", (string)null);
 
                     b.HasData(
                         new
