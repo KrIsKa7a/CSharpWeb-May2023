@@ -7,6 +7,7 @@
     using Microsoft.Extensions.DependencyInjection;
 
     using Data.Models;
+    using Middlewares;
     using static Common.GeneralApplicationConstants;
 
     public static class WebApplicationBuilderExtensions
@@ -82,6 +83,11 @@
             .GetResult();
 
             return app;
+        }
+
+        public static IApplicationBuilder EnableOnlineUsersCheck(this IApplicationBuilder app)
+        {
+            return app.UseMiddleware<OnlineUsersMiddleware>();
         }
     }
 }
